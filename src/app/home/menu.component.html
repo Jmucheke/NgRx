@@ -5,24 +5,24 @@
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   routerLink='/welcome'>Home</a>
+                   routerLink='welcome'>Home</a>
             </li>
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   routerLink='/products'>Product List</a>
+                   routerLink='products'>Product List</a>
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item"
                 *ngIf="isLoggedIn">
                 <a class="nav-link"
-                   routerLink='/login'>Welcome {{ userName }}</a>
+                   routerLink='login'>Welcome {{ userName }}</a>
             </li>
             <li class="nav-item"
                 *ngIf="!isLoggedIn">
                 <a class="nav-link"
-                   routerLink='/login'>Log In</a>
+                   routerLink='login'>Log In</a>
             </li>
             <li class="nav-item"
                 *ngIf="isLoggedIn">
