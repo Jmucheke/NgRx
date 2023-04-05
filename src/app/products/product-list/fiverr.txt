@@ -1,5 +1,0 @@
-entity relationship diagrams (ERDs), simple and complex queries (including joins, aggregations, grouping, and subqueries), normalization (1NF, 2NF, 3NF, BCNF), relational schema and logical schema development, dependencies, cardinalities, and constraints, as well as SQL functions, indexing, and stored procedures, and much more.
-
-
-
-I am committed to 100% accuracy in solutions, as well as being available 24/7 for client support. I am always striving to achieve ultimate customer satisfaction, and I always deliver on time.

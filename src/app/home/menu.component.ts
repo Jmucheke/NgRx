@@ -1,7 +1,11 @@
+import { getCurrentUser } from './../user/state/users.selectors';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { State } from '../state/app.state';
 
 import { AuthService } from '../user/auth.service';
+import { User } from '../user/user';
 
 @Component({
   selector: 'pm-menu',
@@ -9,6 +13,7 @@ import { AuthService } from '../user/auth.service';
 })
 export class MenuComponent implements OnInit {
   pageTitle = 'Acme Product Management';
+  user:User;
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
@@ -21,9 +26,14 @@ export class MenuComponent implements OnInit {
     return '';
   }
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private store:Store<State>) { }
 
   ngOnInit() {
+    // this.store.select(getCurrentUser).subscribe(
+    //   currentUser => this.user.userName = currentUser.userName
+    // )
+    // console.log(this.user.userName);
+
   }
 
   logOut(): void {
