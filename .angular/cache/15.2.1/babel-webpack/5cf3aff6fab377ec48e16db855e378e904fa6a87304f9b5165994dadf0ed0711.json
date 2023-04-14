@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { createAction } from '@ngrx/store';\nexport const toggleProductCode = createAction('[Product] Toggle Product Code');\nexport const setCurrentProduct = createAction('[Product] Set Current product');","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

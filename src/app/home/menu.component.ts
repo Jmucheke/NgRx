@@ -29,9 +29,9 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService, private store:Store<State>) { }
 
   ngOnInit() {
-    // this.store.select(getCurrentUser).subscribe(
-    //   currentUser => this.user.userName = currentUser.userName
-    // )
+    this.store.select(getCurrentUser).subscribe(
+      currentUser => this.user.userName = currentUser.userName
+    )
     // console.log(this.user.userName);
 
   }
