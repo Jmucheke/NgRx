@@ -10,6 +10,7 @@ import { NumberValidators } from '../../shared/number.validator';
 import { State } from 'src/app/state/app.state';
 import { Store } from '@ngrx/store';
 import * as productActions from '../state/actions/product.actions'
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'pm-product-edit',
@@ -20,7 +21,7 @@ export class ProductEditComponent implements OnInit{
   errorMessage = '';
   productForm: FormGroup;
 
-  product: Product | null;
+  product$ : Observable<Product | null>
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
@@ -60,9 +61,9 @@ export class ProductEditComponent implements OnInit{
     });
 
     // Watch for changes to the currently selected product
-    this.store.select(getCurrentProduct).subscribe(
+    this.product$ = this.store.select(getCurrentProduct).pipe(tap(
       currentProduct => this.displayProduct(currentProduct)
-    );
+    ));
 
     // Watch for value changes for validation
     this.productForm.valueChanges.subscribe(
@@ -80,7 +81,6 @@ export class ProductEditComponent implements OnInit{
 
   displayProduct(product: Product | null): void {
     // Set the local product property
-    this.product = product;
 
     if (product) {
       // Reset the form back to pristine
@@ -133,12 +133,12 @@ export class ProductEditComponent implements OnInit{
 
         if (product.id === 0) {
           this.productService.createProduct(product).subscribe({
-            next: p => this.store.dispatch(productActions.setCurrentProduct({product:p})),
+            next: p => this.store.dispatch(productActions.setCurrentProduct({currentProductId:p.id})),
             error: err => this.errorMessage = err
           });
         } else {
           this.productService.updateProduct(product).subscribe({
-            next: p => this.store.dispatch(productActions.setCurrentProduct({product:p})),
+            next: p => this.store.dispatch(productActions.setCurrentProduct({currentProductId:p.id})),
             error: err => this.errorMessage = err
           });
         }

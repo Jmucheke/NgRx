@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const initialState = {\n  showProductCode: true,\n  currentProductId: null,\n  products: [],\n  error: ''\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

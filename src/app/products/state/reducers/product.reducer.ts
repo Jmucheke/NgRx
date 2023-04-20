@@ -23,32 +23,33 @@ export const productReducer = createReducer<ProductState>(
   on(productActions.setCurrentProduct, (state, action): ProductState => {
     return {
       ...state,
-      currentProduct: action.product
+      currentProductId: action.currentProductId
     }
   }),
   on(productActions.clearCurrentProduct, (state): ProductState => {
     return {
       ...state,
-      currentProduct: null
+      currentProductId: null
     }
   }),
   on(productActions.initializeCurrentProduct, (state): ProductState => {
     return {
       ...state,
-      currentProduct: {
-        id: 0,
-        productName: "",
-        productCode: 'New',
-        description: "",
-        starRating: 0
-
-      }
+      currentProductId:0
     }
   }),
   on(productActions.LoadProductsSuccess, (state, action): ProductState => {
     return {
       ...state,
-      products: action.products
+      products: action.products,
+      error:''
+    }
+  }),
+  on(productActions.LoadProductsFailure, (state, action): ProductState => {
+    return {
+      ...state,
+      products: [],
+      error: action.error
     }
   })
-  )
+)

@@ -1,3 +1,4 @@
+import { Observable, tap } from 'rxjs';
 import { getMaskUsername } from './state/users.selectors';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -16,14 +17,15 @@ export class LoginComponent implements OnInit {
   pageTitle = 'Log In';
 
   maskUserName: boolean;
+  maskUserName$: Observable<boolean>;
 
   constructor(private authService: AuthService, private router: Router, private store:Store<State>) { }
 
   ngOnInit(): void {
 
-    this.store.select(getMaskUsername).subscribe(
+    this.maskUserName$ = this.store.select(getMaskUsername).pipe(tap(
       showUserName => this.maskUserName = showUserName
-    )
+    ))
 
   }
 

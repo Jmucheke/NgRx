@@ -2,14 +2,16 @@ import { Product } from './../product';
 
 
 
-export interface ProductState{
-  showProductCode:boolean;
-  currentProduct:Product;
-  products:Product[]
+export interface ProductState {
+  showProductCode: boolean;
+  currentProductId: number | null;
+  products: Product[],
+  error: string
 }
 
 export const initialState: ProductState = {
   showProductCode: true,
-  currentProduct: null,
-  products: []
+  currentProductId: null,
+  products: [],
+  error: ''
 }
