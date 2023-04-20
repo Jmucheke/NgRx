@@ -5,13 +5,13 @@ import * as AppState from '../../../state/app.state'
 import * as productActions from '../actions/product.actions'
 
 
-export interface State extends AppState.State{
-  products:ProductState
+export interface State extends AppState.State {
+  products: ProductState
 }
 
 export const productReducer = createReducer<ProductState>(
   initialState,
-  on(productActions.toggleProductCode, (state):ProductState => {
+  on(productActions.toggleProductCode, (state): ProductState => {
 
 
 
@@ -20,29 +20,35 @@ export const productReducer = createReducer<ProductState>(
       showProductCode: !state.showProductCode
     }
   }),
-  on(productActions.setCurrentProduct, (state,action):ProductState=>{
-    return{
-      ...state,
-      currentProduct:action.product
-    }
-  }),
-  on(productActions.clearCurrentProduct, (state):ProductState=>{
+  on(productActions.setCurrentProduct, (state, action): ProductState => {
     return {
       ...state,
-      currentProduct:null
+      currentProduct: action.product
     }
   }),
-  on(productActions.initializeCurrentProduct,(state):ProductState=>{
+  on(productActions.clearCurrentProduct, (state): ProductState => {
     return {
       ...state,
-      currentProduct:{
-        id:0,
-        productName:"",
-        productCode:'New',
-        description:"",
-        starRating:0
+      currentProduct: null
+    }
+  }),
+  on(productActions.initializeCurrentProduct, (state): ProductState => {
+    return {
+      ...state,
+      currentProduct: {
+        id: 0,
+        productName: "",
+        productCode: 'New',
+        description: "",
+        starRating: 0
 
       }
     }
+  }),
+  on(productActions.LoadProductsSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      products: action.products
+    }
   })
-)
+  )
